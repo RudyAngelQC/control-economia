@@ -1,0 +1,79 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-marca-50: #f0fdfa;
+  --color-marca-100: #ccfbf1;
+  --color-marca-500: #14b8a6;
+  --color-marca-600: #0d9488;
+  --color-marca-700: #0f766e;
+  --color-marca-800: #115e59;
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+  -webkit-tap-highlight-color: transparent;
+}
+:root.dark {
+  color-scheme: dark;
+}
+
+html,
+body {
+  @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100;
+  overscroll-behavior-y: contain;
+}
+
+/* Evita el zoom automático de iOS al enfocar inputs (necesita >= 16px). */
+input,
+select,
+textarea {
+  font-size: 16px;
+}
+
+@utility tarjeta {
+  @apply rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900;
+}
+@utility campo {
+  @apply w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-base outline-none
+    focus:border-marca-600 focus:ring-2 focus:ring-marca-500/30
+    dark:border-slate-700 dark:bg-slate-900;
+}
+@utility etiqueta {
+  @apply mb-1 block text-sm font-medium text-slate-600 dark:text-slate-400;
+}
+@utility btn {
+  @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-4 font-semibold
+    transition active:scale-[0.98] disabled:opacity-50;
+}
+@utility btn-primario {
+  @apply btn bg-marca-700 text-white hover:bg-marca-800 dark:bg-marca-600 dark:hover:bg-marca-700;
+}
+@utility btn-secundario {
+  @apply btn border border-slate-300 bg-white text-slate-800 hover:bg-slate-50
+    dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800;
+}
+@utility btn-peligro {
+  @apply btn bg-red-600 text-white hover:bg-red-700;
+}
+@utility texto-suave {
+  @apply text-slate-500 dark:text-slate-400;
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+@keyframes subir {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.animar-subir {
+  animation: subir 0.18s ease-out;
+}
